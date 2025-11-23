@@ -26,7 +26,7 @@ syn region TomoString start=/'.\@!\%(^\z(\s*\).*\)\@<=/hs=e+1 end=/^\z1'\|^\%(\z
 syn region TomoString start=/`.\@!\%(^\z(\s*\).*\)\@<=/hs=e+1 end=/^\z1`\|^\%(\z1\s\)\@!\s*\S\@=/he=s-1 contains=TomoStringInterpAt,TomoEscape
 hi def link TomoString String
 
-syn region TomoPath start=;(\(\~/\|\./\|\.\./\|/\); skip=/\\.\|([^)]*)/ end=;$\|); contains=TomoStringInterp,TomoEscape
+syn region TomoPath start=;(\(\~/\|\./\|\.\./\|/\); skip=/\\.\|([^)]*)/ end=;$\|); contains=TomoEscape
 hi def link TomoPath String
 
 "syn region TomoDSLString start=/\z(["'`|/;([{<]\).\@=/hs=e end=/\z1/ contains=TomoStringInterp,TomoEscape contained
@@ -100,7 +100,7 @@ syn match TomoArgDefault /=/ nextgroup=@TomoAll skipwhite contained
 hi def link TomoArgDefault Operator
 syn match TomoReturnSignature /->/ nextgroup=TomoType skipwhite contained
 hi def link TomoReturnSignature Operator
-syn region TomoFnArgSignature start=/(/ end=/)/ contains=TomoVar,TomoDelim,TomoTypeAnnotation,TomoArgDefault nextgroup=TomoReturnSignature skipwhite contained
+syn region TomoFnArgSignature start=/(/ end=/)/ contains=TomoVar,TomoDelim,TomoTypeAnnotation,TomoArgDefault,TomoComment nextgroup=TomoReturnSignature skipwhite contained
 syn match TomoFnName /\<[a-zA-Z_][a-zA-Z_0-9]*\>/ nextgroup=TomoFnArgSignature skipwhite contained
 hi def link TomoFnName Function
 syn keyword TomoFuncDef func nextgroup=TomoFnName skipwhite
